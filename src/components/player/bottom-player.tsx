@@ -1,12 +1,26 @@
 "use client";
 
 import { usePlayerStore } from "@/stores/player-store";
+import { useShallow } from "zustand/react/shallow";
+import {Play, Pause} from "lucide-react";
+import { formatTime } from "@/utils/format-time";
 
 export default function BottomPlayer() {
-  const currentSong =
-    usePlayerStore(
-      (state) => state.currentSong
-    );
+  const { 
+    currentSong,
+    isPlaying,
+    togglePlay,
+    currentTime,
+    duration,
+  } = usePlayerStore(
+    useShallow((state) => ({
+      currentSong: state.currentSong,
+      isPlaying: state.isPlaying,
+      togglePlay: state.togglePlay,
+      currentTime: state.currentTime,
+      duration: state.duration,
+    }))
+  );
 
   if (!currentSong) {
     return (
@@ -35,6 +49,36 @@ export default function BottomPlayer() {
           <p className="text-sm text-zinc-400">
             {currentSong.artist}
           </p>
+          <button
+  onClick={togglePlay}
+  className="rounded-full bg-white p-3 text-black"
+>
+  {isPlaying ? (
+    <Pause size={18} />
+  ) : (
+    <Play size={18} />
+  )}
+</button>
+<div className="ml-10 flex-1">
+  <input
+    type="range"
+    min={0}
+    max={duration || 0}
+    value={currentTime}
+    readOnly
+    className="w-full"
+  />
+
+  <div className="flex justify-between text-xs text-zinc-400">
+    <span>
+      {formatTime(currentTime)}
+    </span>
+
+    <span>
+      {formatTime(duration)}
+    </span>
+  </div>
+</div>
         </div>
       </div>
     </div>
