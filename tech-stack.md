@@ -1,0 +1,9 @@
+framework = Next.js 15 (App Router)
+languange = Typescript
+Styling = Tailwind CSS
+UI Components = Shadcn UI
+Animation = Framer Motion
+State Management = Zustand
+Icons = Lucide React
+Utilities = clsx, tailwind-merge
+deploy = rencana vercel
