@@ -30,6 +30,8 @@ export const usePlayerStore =
       set({
         currentSong: song,
         isPlaying: true,
+        currentTime: 0,
+        duration: 0,
       }),
 
     play: () =>

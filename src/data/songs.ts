@@ -5,9 +5,10 @@ export const songs: Song[] = [
         id: "1",
         title: "SWIM",
         artist: "Chase Atlantic",
-        cover: "/covers/swim.jpg", //sesuaikan dengan path gambar cover yang benar
-        audio: "/music/swim.mp3", //sesuaikan dengan path audio yang benar
-        video: "/videos/swim.mp4", //sesuaikan dengan path video yang benar
+        cover: "/covers/swim.jpg",
+        audio: "/music/swim.mp3",
+        video: "/videos/swim.mp4",
+        duration: "3:48",
         color: "#2564eb",
     },
     {
@@ -17,6 +18,7 @@ export const songs: Song[] = [
         cover: "/covers/into-it.jpg",
         audio: "/music/into-it.mp3",
         video: "/videos/into-it.mp4",
+        duration: "4:16",
         color: "#9333ea",
     },
     {
@@ -26,6 +28,7 @@ export const songs: Song[] = [
     cover: "/covers/consume.jpg",
     audio: "/music/consume.mp3",
     video: "/videos/consume.mp4",
+    duration: "4:38",
     color: "#7c3aed",
     },
 
@@ -36,6 +39,7 @@ export const songs: Song[] = [
     cover: "/covers/heaven-and-back.jpg",
     audio: "/music/heaven-and-back.mp3",
     video: "/videos/heaven-and-back.mp4",
+    duration: "4:09",
     color: "#ec4899",
     },
 
@@ -46,6 +50,7 @@ export const songs: Song[] = [
     cover: "/covers/let-it-happen.jpg",
     audio: "/music/let-it-happen.mp3",
     video: "/videos/let-it-happen.mp4",
+    duration: "7:47",
     color: "#06b6d4",
     },
 
@@ -56,6 +61,7 @@ export const songs: Song[] = [
     cover: "/covers/the-less-i-know.jpg",
     audio: "/music/the-less-i-know.mp3",
     video: "/videos/the-less-i-know.mp4",
+    duration: "3:38",
     color: "#f97316",
     },
 
@@ -66,6 +72,7 @@ export const songs: Song[] = [
     cover: "/covers/new-person.jpg",
     audio: "/music/new-person.mp3",
     video: "/videos/new-person.mp4",
+    duration: "6:03",
     color: "#14b8a6",
     }
 ];

@@ -8,15 +8,8 @@ export default function AudioProvider() {
   const audioRef =
     useRef<HTMLAudioElement>(null);
 
-  const {
-    currentSong,
-    isPlaying,
-
-    currentTime,
-    setCurrentTime,
-
-    setDuration,
-  } = usePlayerStore();
+  const { currentSong, isPlaying, setCurrentTime, setDuration } =
+    usePlayerStore();
 
   useEffect(() => {
     if (!audioRef.current) return;
