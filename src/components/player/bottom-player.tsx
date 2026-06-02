@@ -2,19 +2,32 @@
 
 import { usePlayerStore } from "@/stores/player-store";
 import { useShallow } from "zustand/react/shallow";
-import { Play, Pause, SkipBack, SkipForward } from "lucide-react";
+import { Play, Pause, SkipBack, SkipForward, Volume2, VolumeX } from "lucide-react";
 
 export default function BottomPlayer() {
-  const { currentSong, isPlaying, currentTime, duration, togglePlay } =
-    usePlayerStore(
-      useShallow((state) => ({
-        currentSong: state.currentSong,
-        isPlaying: state.isPlaying,
-        currentTime: state.currentTime,
-        duration: state.duration,
-        togglePlay: state.togglePlay,
-      }))
-    );
+  const {
+    currentSong,
+    isPlaying,
+    currentTime,
+    duration,
+    volume,
+    togglePlay,
+    nextSong,
+    previousSong,
+    setVolume,
+  } = usePlayerStore(
+    useShallow((state) => ({
+      currentSong: state.currentSong,
+      isPlaying: state.isPlaying,
+      currentTime: state.currentTime,
+      duration: state.duration,
+      volume: state.volume,
+      togglePlay: state.togglePlay,
+      nextSong: state.nextSong,
+      previousSong: state.previousSong,
+      setVolume: state.setVolume,
+    }))
+  );
 
   const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
 
@@ -85,8 +98,11 @@ export default function BottomPlayer() {
           </div>
         </div>
 
-        <div className="flex items-center justify-end gap-2 sm:gap-4">
-          <button className="hidden text-zinc-400 transition hover:text-white sm:block">
+        <div className="flex items-center justify-end gap-1 sm:gap-3">
+          <button
+            onClick={previousSong}
+            className="rounded-full p-2 text-zinc-400 transition hover:text-white active:scale-90"
+          >
             <SkipBack size={18} />
           </button>
           <button
@@ -99,9 +115,30 @@ export default function BottomPlayer() {
               <Play size={18} className="ml-0.5" />
             )}
           </button>
-          <button className="hidden text-zinc-400 transition hover:text-white sm:block">
+          <button
+            onClick={nextSong}
+            className="rounded-full p-2 text-zinc-400 transition hover:text-white active:scale-90"
+          >
             <SkipForward size={18} />
           </button>
+
+          <div className="ml-2 hidden items-center gap-1.5 sm:flex">
+            <button
+              onClick={() => setVolume(volume === 0 ? 0.7 : 0)}
+              className="text-zinc-400 transition hover:text-white"
+            >
+              {volume === 0 ? <VolumeX size={16} /> : <Volume2 size={16} />}
+            </button>
+            <input
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              value={volume}
+              onChange={(e) => setVolume(Number(e.target.value))}
+              className="h-1 w-20 cursor-pointer appearance-none rounded-full bg-white/10 accent-white [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white"
+            />
+          </div>
         </div>
       </div>
     </div>

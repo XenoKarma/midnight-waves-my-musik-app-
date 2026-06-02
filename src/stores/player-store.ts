@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { Song } from "@/types/song";
+import { songs } from "@/data/songs";
 
 interface PlayerState {
   currentSong: Song | null;
@@ -8,23 +9,31 @@ interface PlayerState {
   currentTime: number;
   duration: number;
 
+  volume: number;
+
   setCurrentSong: (song: Song) => void;
 
   play: () => void;
   pause: () => void;
   togglePlay: () => void;
 
+  nextSong: () => void;
+  previousSong: () => void;
+
   setCurrentTime: (time: number) => void;
   setDuration: (duration: number) => void;
+  setVolume: (volume: number) => void;
 }
 
 export const usePlayerStore =
-  create<PlayerState>((set) => ({
+  create<PlayerState>((set, get) => ({
     currentSong: null,
     isPlaying: false,
 
     currentTime: 0,
     duration: 0,
+
+    volume: 0.7,
 
     setCurrentSong: (song) =>
       set({
@@ -49,6 +58,32 @@ export const usePlayerStore =
         isPlaying: !state.isPlaying,
       })),
 
+    nextSong: () => {
+      const { currentSong } = get();
+      if (!currentSong) return;
+      const idx = songs.findIndex((s) => s.id === currentSong.id);
+      if (idx === -1 || idx >= songs.length - 1) return;
+      set({
+        currentSong: songs[idx + 1],
+        isPlaying: true,
+        currentTime: 0,
+        duration: 0,
+      });
+    },
+
+    previousSong: () => {
+      const { currentSong } = get();
+      if (!currentSong) return;
+      const idx = songs.findIndex((s) => s.id === currentSong.id);
+      if (idx <= 0) return;
+      set({
+        currentSong: songs[idx - 1],
+        isPlaying: true,
+        currentTime: 0,
+        duration: 0,
+      });
+    },
+
     setCurrentTime: (time) =>
       set({
         currentTime: time,
@@ -57,5 +92,10 @@ export const usePlayerStore =
     setDuration: (duration) =>
       set({
         duration,
+      }),
+
+    setVolume: (volume) =>
+      set({
+        volume,
       }),
   }));
