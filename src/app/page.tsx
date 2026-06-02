@@ -4,6 +4,7 @@ import SongGrid from "@/components/songs/song-grid";
 import AudioProvider from "@/components/player/audio-provider";
 import VideoBackground from "@/components/player/video-background";
 import FullscreenPlayer from "@/components/player/fullscreen-player";
+import MainLayout from "@/components/layout/main-layout";
 
 export default function Home() {
   return (
@@ -11,15 +12,17 @@ export default function Home() {
       <VideoBackground />
       <AudioProvider />
       <FullscreenPlayer />
-      <div className="flex flex-1 overflow-hidden">
-        <Sidebar />
 
+      <MainLayout>
+        <Sidebar />
         <section className="flex-1 overflow-y-auto p-8 pb-28">
           <SongGrid />
         </section>
-      </div>
+      </MainLayout>
 
-      <BottomPlayer />
+      <MainLayout as="fixed">
+        <BottomPlayer />
+      </MainLayout>
     </main>
   );
 }
