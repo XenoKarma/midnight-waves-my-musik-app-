@@ -10,6 +10,7 @@ interface PlayerState {
   duration: number;
 
   volume: number;
+  isFullscreen: boolean;
 
   setCurrentSong: (song: Song) => void;
 
@@ -23,6 +24,7 @@ interface PlayerState {
   setCurrentTime: (time: number) => void;
   setDuration: (duration: number) => void;
   setVolume: (volume: number) => void;
+  setFullscreen: (fullscreen: boolean) => void;
 }
 
 export const usePlayerStore =
@@ -34,6 +36,7 @@ export const usePlayerStore =
     duration: 0,
 
     volume: 0.7,
+    isFullscreen: false,
 
     setCurrentSong: (song) =>
       set({
@@ -99,5 +102,10 @@ export const usePlayerStore =
     setVolume: (volume) =>
       set({
         volume,
+      }),
+
+    setFullscreen: (fullscreen) =>
+      set({
+        isFullscreen: fullscreen,
       }),
   }));

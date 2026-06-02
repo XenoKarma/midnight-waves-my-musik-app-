@@ -3,12 +3,14 @@ import BottomPlayer from "@/components/player/bottom-player";
 import SongGrid from "@/components/songs/song-grid";
 import AudioProvider from "@/components/player/audio-provider";
 import VideoBackground from "@/components/player/video-background";
+import FullscreenPlayer from "@/components/player/fullscreen-player";
 
 export default function Home() {
   return (
     <main className="flex h-screen flex-col text-white">
       <VideoBackground />
       <AudioProvider />
+      <FullscreenPlayer />
       <div className="flex flex-1 overflow-hidden">
         <Sidebar />
 

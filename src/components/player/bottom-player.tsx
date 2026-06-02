@@ -15,6 +15,7 @@ export default function BottomPlayer() {
     nextSong,
     previousSong,
     setVolume,
+    setFullscreen,
   } = usePlayerStore(
     useShallow((state) => ({
       currentSong: state.currentSong,
@@ -26,6 +27,7 @@ export default function BottomPlayer() {
       nextSong: state.nextSong,
       previousSong: state.previousSong,
       setVolume: state.setVolume,
+      setFullscreen: state.setFullscreen,
     }))
   );
 
@@ -54,7 +56,10 @@ export default function BottomPlayer() {
   }
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 h-24 border-t border-white/5 bg-black/60 backdrop-blur-xl">
+    <div
+      onClick={() => setFullscreen(true)}
+      className="fixed bottom-0 left-0 right-0 z-50 h-24 cursor-pointer border-t border-white/5 bg-black/60 backdrop-blur-xl"
+    >
       <div className="absolute top-0 left-0 right-0 h-0.5 bg-white/5">
         <div
           className="h-full rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 transition-all duration-200"
@@ -100,13 +105,13 @@ export default function BottomPlayer() {
 
         <div className="flex items-center justify-end gap-1 sm:gap-3">
           <button
-            onClick={previousSong}
+            onClick={(e) => { e.stopPropagation(); previousSong(); }}
             className="rounded-full p-2 text-zinc-400 transition hover:text-white active:scale-90"
           >
             <SkipBack size={18} />
           </button>
           <button
-            onClick={togglePlay}
+            onClick={(e) => { e.stopPropagation(); togglePlay(); }}
             className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white shadow-lg transition hover:bg-white/20 active:scale-95"
           >
             {isPlaying ? (
@@ -116,7 +121,7 @@ export default function BottomPlayer() {
             )}
           </button>
           <button
-            onClick={nextSong}
+            onClick={(e) => { e.stopPropagation(); nextSong(); }}
             className="rounded-full p-2 text-zinc-400 transition hover:text-white active:scale-90"
           >
             <SkipForward size={18} />
@@ -124,7 +129,7 @@ export default function BottomPlayer() {
 
           <div className="ml-2 hidden items-center gap-1.5 sm:flex">
             <button
-              onClick={() => setVolume(volume === 0 ? 0.7 : 0)}
+              onClick={(e) => { e.stopPropagation(); setVolume(volume === 0 ? 0.7 : 0); }}
               className="text-zinc-400 transition hover:text-white"
             >
               {volume === 0 ? <VolumeX size={16} /> : <Volume2 size={16} />}
@@ -135,6 +140,7 @@ export default function BottomPlayer() {
               max="1"
               step="0.01"
               value={volume}
+              onClick={(e) => e.stopPropagation()}
               onChange={(e) => setVolume(Number(e.target.value))}
               className="h-1 w-20 cursor-pointer appearance-none rounded-full bg-white/10 accent-white [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white"
             />
