@@ -1,10 +1,17 @@
+import dynamic from "next/dynamic";
 import Sidebar from "@/components/layout/sidebar";
 import BottomPlayer from "@/components/player/bottom-player";
 import AudioProvider from "@/components/player/audio-provider";
 import VideoBackground from "@/components/player/video-background";
-import FullscreenPlayer from "@/components/player/fullscreen-player";
 import MainLayout from "@/components/layout/main-layout";
-import ViewRouter from "@/components/layout/view-router";
+
+const FullscreenPlayer = dynamic(
+  () => import("@/components/player/fullscreen-player")
+);
+
+const ViewRouter = dynamic(
+  () => import("@/components/layout/view-router")
+);
 
 export default function Home() {
   return (

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { usePlayerStore } from "@/stores/player-store";
 import { useShallow } from "zustand/react/shallow";
 import { AnimatePresence, motion } from "framer-motion";
@@ -97,12 +98,14 @@ export default function FullscreenPlayer() {
             >
               <motion.div
                 variants={scaleIn}
-                className="h-48 w-48 overflow-hidden rounded-2xl shadow-2xl sm:h-72 sm:w-72"
+                className="relative h-48 w-48 overflow-hidden rounded-2xl shadow-2xl sm:h-72 sm:w-72"
               >
-                <img
+                <Image
                   src={currentSong.cover}
                   alt={currentSong.title}
-                  className="h-full w-full object-cover"
+                  fill
+                  sizes="(max-width: 640px) 192px, 288px"
+                  className="object-cover"
                 />
               </motion.div>
 

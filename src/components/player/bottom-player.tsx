@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { usePlayerStore } from "@/stores/player-store";
 import { useShallow } from "zustand/react/shallow";
 import { Play, Pause, SkipBack, SkipForward, Volume2, VolumeX } from "lucide-react";
@@ -72,10 +73,12 @@ export default function BottomPlayer() {
       <div className="mx-auto grid h-full max-w-7xl grid-cols-2 items-center gap-2 px-3 sm:grid-cols-3 sm:gap-4 sm:px-6">
         <div className="flex items-center gap-3 sm:gap-4">
           <div className="relative h-10 w-10 flex-shrink-0 overflow-hidden rounded-lg bg-zinc-800 shadow-lg sm:h-14 sm:w-14 sm:rounded-xl">
-            <img
+            <Image
               src={currentSong.cover}
               alt={currentSong.title}
-              className="h-full w-full object-cover"
+              fill
+              sizes="56px"
+              className="object-cover"
             />
           </div>
           <div className="min-w-0">

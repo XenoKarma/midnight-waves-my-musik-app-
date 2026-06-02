@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { Song } from "@/types/song";
 import { usePlayerStore } from "@/stores/player-store";
 
@@ -13,11 +14,13 @@ export default function SongCard({
 
   return (
     <div onClick={() => setCurrentSong(song)} className="group cursor-pointer rounded-xl bg-white/5 p-4 transition hover:bg-white/10">
-      <div className="aspect-square overflow-hidden rounded-lg bg-zinc-800">
-        <img
+      <div className="relative aspect-square overflow-hidden rounded-lg bg-zinc-800">
+        <Image
           src={song.cover}
           alt={song.title}
-          className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+          fill
+          sizes="(max-width: 768px) 50vw, (max-width: 1280px) 25vw, 20vw"
+          className="object-cover transition duration-300 group-hover:scale-105"
         />
       </div>
 

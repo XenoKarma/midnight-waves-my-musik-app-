@@ -14,6 +14,7 @@ export default function VideoBackground() {
           muted
           loop
           playsInline
+          preload="none"
           className="absolute inset-0 h-full w-full animate-[fade-in_0.5s_ease-in-out] object-cover"
         >
           <source src={currentSong.video} type="video/mp4" />
