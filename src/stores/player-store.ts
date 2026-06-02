@@ -62,9 +62,10 @@ export const usePlayerStore =
       const { currentSong } = get();
       if (!currentSong) return;
       const idx = songs.findIndex((s) => s.id === currentSong.id);
-      if (idx === -1 || idx >= songs.length - 1) return;
+      if (idx === -1) return;
+      const nextIdx = idx >= songs.length - 1 ? 0 : idx + 1;
       set({
-        currentSong: songs[idx + 1],
+        currentSong: songs[nextIdx],
         isPlaying: true,
         currentTime: 0,
         duration: 0,
@@ -75,9 +76,10 @@ export const usePlayerStore =
       const { currentSong } = get();
       if (!currentSong) return;
       const idx = songs.findIndex((s) => s.id === currentSong.id);
-      if (idx <= 0) return;
+      if (idx === -1) return;
+      const prevIdx = idx <= 0 ? songs.length - 1 : idx - 1;
       set({
-        currentSong: songs[idx - 1],
+        currentSong: songs[prevIdx],
         isPlaying: true,
         currentTime: 0,
         duration: 0,

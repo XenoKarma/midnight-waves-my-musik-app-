@@ -10,7 +10,7 @@ export default function Home() {
       <div className="flex flex-1 overflow-hidden">
         <Sidebar />
 
-        <section className="flex-1 overflow-y-auto p-8">
+        <section className="flex-1 overflow-y-auto p-8 pb-28">
           <SongGrid />
         </section>
       </div>
