@@ -198,13 +198,4 @@ export const lyrics: Record<string, string[]> = {
     "All in one night (one night)",
     "She just went to heaven and back",
   ],
-  "5": [
-    "Empty Lyrics",
-  ],
-  "6": [
-    "Empty Lyrics",
-  ],
-  "7": [
-    "Empty Lyrics",
-  ],
 };

@@ -79,7 +79,7 @@ export const songs: Song[] = [
     {
     id: "8",
     title: "Cool For The Summer",
-    artist: "Tame Impala",
+    artist: "Demi Lovato",
     cover: "/covers/cool-for-the-summer.jpg",
     audio: "/music/cool-for-the-summer.mp3",
     video: "/videos/cool-for-the-summer.mp4",
