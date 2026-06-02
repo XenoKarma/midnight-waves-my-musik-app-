@@ -39,9 +39,11 @@ export default function BottomPlayer() {
     return `${m}:${s.toString().padStart(2, "0")}`;
   };
 
+  const heightClass = "h-20 sm:h-24";
+
   if (!currentSong) {
     return (
-      <div className="fixed bottom-0 left-0 right-0 z-50 h-24 border-t border-white/5 bg-black/60 backdrop-blur-xl">
+      <div className={`fixed bottom-0 left-0 right-0 z-50 ${heightClass} border-t border-white/5 bg-black/60 backdrop-blur-xl`}>
         <div className="flex h-full items-center justify-center">
           <div className="flex items-center gap-3 text-zinc-500">
             <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-zinc-600" />
@@ -58,7 +60,7 @@ export default function BottomPlayer() {
   return (
     <div
       onClick={() => setFullscreen(true)}
-      className="fixed bottom-0 left-0 right-0 z-50 h-24 cursor-pointer border-t border-white/5 bg-black/60 backdrop-blur-xl"
+      className={`fixed bottom-0 left-0 right-0 z-50 ${heightClass} cursor-pointer border-t border-white/5 bg-black/60 backdrop-blur-xl`}
     >
       <div className="absolute top-0 left-0 right-0 h-0.5 bg-white/5">
         <div
@@ -67,9 +69,9 @@ export default function BottomPlayer() {
         />
       </div>
 
-      <div className="mx-auto grid h-full max-w-7xl grid-cols-3 items-center gap-4 px-4 sm:px-6">
+      <div className="mx-auto grid h-full max-w-7xl grid-cols-2 items-center gap-2 px-3 sm:grid-cols-3 sm:gap-4 sm:px-6">
         <div className="flex items-center gap-3 sm:gap-4">
-          <div className="relative h-12 w-12 flex-shrink-0 overflow-hidden rounded-xl bg-zinc-800 shadow-lg sm:h-14 sm:w-14">
+          <div className="relative h-10 w-10 flex-shrink-0 overflow-hidden rounded-lg bg-zinc-800 shadow-lg sm:h-14 sm:w-14 sm:rounded-xl">
             <img
               src={currentSong.cover}
               alt={currentSong.title}
@@ -86,7 +88,7 @@ export default function BottomPlayer() {
           </div>
         </div>
 
-        <div className="flex flex-col items-center gap-1.5">
+        <div className="hidden flex-col items-center gap-1.5 sm:flex">
           <div className="group relative w-full max-w-lg cursor-pointer">
             <div className="h-1.5 w-full rounded-full bg-white/10">
               <div
@@ -106,13 +108,13 @@ export default function BottomPlayer() {
         <div className="flex items-center justify-end gap-1 sm:gap-3">
           <button
             onClick={(e) => { e.stopPropagation(); previousSong(); }}
-            className="rounded-full p-2 text-zinc-400 transition hover:text-white active:scale-90"
+            className="rounded-full p-1.5 text-zinc-400 transition hover:text-white active:scale-90 sm:p-2"
           >
             <SkipBack size={18} />
           </button>
           <button
             onClick={(e) => { e.stopPropagation(); togglePlay(); }}
-            className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white shadow-lg transition hover:bg-white/20 active:scale-95"
+            className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white shadow-lg transition hover:bg-white/20 active:scale-95 sm:h-10 sm:w-10"
           >
             {isPlaying ? (
               <Pause size={18} />
@@ -122,12 +124,12 @@ export default function BottomPlayer() {
           </button>
           <button
             onClick={(e) => { e.stopPropagation(); nextSong(); }}
-            className="rounded-full p-2 text-zinc-400 transition hover:text-white active:scale-90"
+            className="rounded-full p-1.5 text-zinc-400 transition hover:text-white active:scale-90 sm:p-2"
           >
             <SkipForward size={18} />
           </button>
 
-          <div className="ml-2 hidden items-center gap-1.5 sm:flex">
+          <div className="ml-2 hidden items-center gap-1.5 lg:flex">
             <button
               onClick={(e) => { e.stopPropagation(); setVolume(volume === 0 ? 0.7 : 0); }}
               className="text-zinc-400 transition hover:text-white"

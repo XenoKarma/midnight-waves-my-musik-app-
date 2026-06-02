@@ -2,6 +2,8 @@ import { create } from "zustand";
 import { Song } from "@/types/song";
 import { songs } from "@/data/songs";
 
+type View = "songs" | "lyrics";
+
 interface PlayerState {
   currentSong: Song | null;
   isPlaying: boolean;
@@ -11,6 +13,7 @@ interface PlayerState {
 
   volume: number;
   isFullscreen: boolean;
+  currentView: View;
 
   setCurrentSong: (song: Song) => void;
 
@@ -25,6 +28,7 @@ interface PlayerState {
   setDuration: (duration: number) => void;
   setVolume: (volume: number) => void;
   setFullscreen: (fullscreen: boolean) => void;
+  setView: (view: View) => void;
 }
 
 export const usePlayerStore =
@@ -37,6 +41,7 @@ export const usePlayerStore =
 
     volume: 0.7,
     isFullscreen: false,
+    currentView: "songs",
 
     setCurrentSong: (song) =>
       set({
@@ -107,5 +112,10 @@ export const usePlayerStore =
     setFullscreen: (fullscreen) =>
       set({
         isFullscreen: fullscreen,
+      }),
+
+    setView: (view) =>
+      set({
+        currentView: view,
       }),
   }));

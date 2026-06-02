@@ -74,5 +74,16 @@ export const songs: Song[] = [
     video: "/videos/new-person.mp4",
     duration: "6:03",
     color: "#14b8a6",
-    }
+    },
+
+    {
+    id: "8",
+    title: "Cool For The Summer",
+    artist: "Tame Impala",
+    cover: "/covers/cool-for-the-summer.jpg",
+    audio: "/music/cool-for-the-summer.mp3",
+    video: "/videos/cool-for-the-summer.mp4",
+    duration: "1:52",
+    color: "#db2777",
+    },
 ];
